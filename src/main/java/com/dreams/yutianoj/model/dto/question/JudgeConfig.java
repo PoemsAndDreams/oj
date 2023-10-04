@@ -1,10 +1,13 @@
 package com.dreams.yutianoj.model.dto.question;
 
+import lombok.Data;
+
 /**
  * @author PoemsAndDreams
  * @date 2023-10-02 21:24
  * 题目配置
  */
+@Data
 public class JudgeConfig {
 
 

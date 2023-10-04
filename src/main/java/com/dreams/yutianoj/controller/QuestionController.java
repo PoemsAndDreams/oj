@@ -9,10 +9,8 @@ import com.dreams.yutianoj.common.ResultUtils;
 import com.dreams.yutianoj.constant.UserConstant;
 import com.dreams.yutianoj.exception.BusinessException;
 import com.dreams.yutianoj.exception.ThrowUtils;
-import com.dreams.yutianoj.model.dto.question.QuestionAddRequest;
-import com.dreams.yutianoj.model.dto.question.QuestionEditRequest;
-import com.dreams.yutianoj.model.dto.question.QuestionQueryRequest;
-import com.dreams.yutianoj.model.dto.question.QuestionUpdateRequest;
+import com.dreams.yutianoj.model.dto.question.*;
+import com.dreams.yutianoj.model.dto.user.UserQueryRequest;
 import com.dreams.yutianoj.model.entity.Question;
 import com.dreams.yutianoj.model.entity.User;
 import com.dreams.yutianoj.model.vo.QuestionVO;
@@ -64,6 +62,14 @@ public class QuestionController {
         List<String> tags = questionAddRequest.getTags();
         if (tags != null) {
             question.setTags(GSON.toJson(tags));
+        }
+        List<JudgeCase> judgeCase = questionAddRequest.getJudgeCase();
+        if (judgeCase != null) {
+            question.setJudgeCase(GSON.toJson(judgeCase));
+        }
+        JudgeConfig judgeConfig = questionAddRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            question.setJudgeConfig(GSON.toJson(judgeConfig));
         }
         questionService.validQuestion(question, true);
         User loginUser = userService.getLoginUser(request);
@@ -119,6 +125,14 @@ public class QuestionController {
         if (tags != null) {
             question.setTags(GSON.toJson(tags));
         }
+        List<JudgeCase> judgeCase = questionUpdateRequest.getJudgeCase();
+        if (judgeCase != null) {
+            question.setJudgeCase(GSON.toJson(judgeCase));
+        }
+        JudgeConfig judgeConfig = questionUpdateRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            question.setJudgeConfig(GSON.toJson(judgeConfig));
+        }
         // 参数校验
         questionService.validQuestion(question, false);
         long id = questionUpdateRequest.getId();
@@ -165,6 +179,28 @@ public class QuestionController {
                 questionService.getQueryWrapper(questionQueryRequest));
         return ResultUtils.success(questionService.getQuestionVOPage(questionPage, request));
     }
+
+
+    /**
+     * 分页获取题目列表（仅管理员）
+     *
+     * @param questionQueryRequest
+     * @param request
+     * @return
+     */
+    @PostMapping("/list/page")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Page<Question>> listQuestionByPage(@RequestBody QuestionQueryRequest questionQueryRequest,
+                                                   HttpServletRequest request) {
+        long current = questionQueryRequest.getCurrent();
+        long size = questionQueryRequest.getPageSize();
+        Page<Question> questionPage = questionService.page(new Page<>(current, size),
+                questionService.getQueryWrapper(questionQueryRequest));
+        return ResultUtils.success(questionPage);
+    }
+
+
+
 
     /**
      * 分页获取当前用户创建的资源列表
@@ -213,6 +249,14 @@ public class QuestionController {
         List<String> tags = questionEditRequest.getTags();
         if (tags != null) {
             question.setTags(GSON.toJson(tags));
+        }
+        List<JudgeCase> judgeCase = questionEditRequest.getJudgeCase();
+        if (judgeCase != null) {
+            question.setJudgeCase(GSON.toJson(judgeCase));
+        }
+        JudgeConfig judgeConfig = questionEditRequest.getJudgeConfig();
+        if (judgeConfig != null) {
+            question.setJudgeConfig(GSON.toJson(judgeConfig));
         }
         // 参数校验
         questionService.validQuestion(question, false);

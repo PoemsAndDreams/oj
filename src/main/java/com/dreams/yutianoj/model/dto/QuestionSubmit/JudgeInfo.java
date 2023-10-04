@@ -1,10 +1,13 @@
 package com.dreams.yutianoj.model.dto.QuestionSubmit;
 
+import lombok.Data;
+
 /**
  * @author PoemsAndDreams
  * @date 2023-10-02 21:40
  * 判题对象
  */
+@Data
 public class JudgeInfo {
 
     /**
