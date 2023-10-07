@@ -1,4 +1,4 @@
-package com.dreams.yutianoj.model.dto.QuestionSubmit;
+package com.dreams.yutianoj.judge.codesandbox.model;
 
 import lombok.Data;
 

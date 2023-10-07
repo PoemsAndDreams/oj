@@ -89,3 +89,9 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
+
+
+# 自定义读取配置
+# 代码沙箱配置
+codesandbox:
+  type: remote

@@ -1,7 +1,7 @@
 package com.dreams.yutianoj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.dreams.yutianoj.model.dto.QuestionSubmit.JudgeInfo;
+import com.dreams.yutianoj.judge.codesandbox.model.JudgeInfo;
 import com.dreams.yutianoj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
