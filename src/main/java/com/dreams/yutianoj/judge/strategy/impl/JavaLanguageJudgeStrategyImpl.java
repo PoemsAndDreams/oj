@@ -10,6 +10,7 @@ import com.dreams.yutianoj.model.entity.Question;
 import com.dreams.yutianoj.model.enums.JudgeInfoMessageEnum;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author PoemsAndDreams
@@ -38,8 +39,9 @@ public class JavaLanguageJudgeStrategyImpl implements JudgeStrategy {
         JudgeInfoMessageEnum judgeInfoMessageEnum = JudgeInfoMessageEnum.ACCEPTED;
 
 
-        Long memory = judgeInfo.getMemory();
-        Long time = judgeInfo.getTime();
+        Long memory = Optional.ofNullable(judgeInfo.getMemory()).orElse(0L);
+//        Long memory = judgeInfo.getMemory();
+        Long time = Optional.ofNullable(judgeInfo.getTime()).orElse(0L);
 
         JudgeInfo judgeInfoResponse = new JudgeInfo();
         judgeInfoResponse.setMemory(memory);

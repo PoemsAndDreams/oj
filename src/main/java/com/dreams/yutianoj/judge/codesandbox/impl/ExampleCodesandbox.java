@@ -1,6 +1,6 @@
 package com.dreams.yutianoj.judge.codesandbox.impl;
 
-import com.dreams.yutianoj.judge.codesandbox.CodeSandBox;
+import com.dreams.yutianoj.judge.codesandbox.Codesandbox;
 import com.dreams.yutianoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.dreams.yutianoj.judge.codesandbox.model.ExecuteCodeResponse;
 import com.dreams.yutianoj.judge.codesandbox.model.JudgeInfo;
@@ -14,7 +14,7 @@ import java.util.List;
  * @date 2023-10-07 11:59
  * 示例代码沙箱
  */
-public class ExampleCodeSandbox implements CodeSandBox {
+public class ExampleCodesandbox implements Codesandbox {
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
         List<String> inputList = executeCodeRequest.getInputList();

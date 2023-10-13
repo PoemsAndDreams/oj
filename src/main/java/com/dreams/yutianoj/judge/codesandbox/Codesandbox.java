@@ -8,7 +8,7 @@ import com.dreams.yutianoj.judge.codesandbox.model.ExecuteCodeResponse;
  * @date 2023-10-06 23:08
  * 代码沙箱接口定义
  */
-public interface CodeSandBox {
+public interface Codesandbox {
 
     /**
      * 执行代码

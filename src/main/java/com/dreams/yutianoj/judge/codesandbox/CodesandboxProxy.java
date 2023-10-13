@@ -9,18 +9,18 @@ import lombok.extern.slf4j.Slf4j;
  * @date 2023-10-07 12:48
  */
 @Slf4j
-public class CodeSandBoxProxy implements CodeSandBox{
+public class CodesandboxProxy implements Codesandbox{
 
-    private final CodeSandBox codeSandBox;
+    private final Codesandbox codesandbox;
 
-    public CodeSandBoxProxy(CodeSandBox codeSandBox) {
-        this.codeSandBox = codeSandBox;
+    public CodesandboxProxy(Codesandbox codesandbox) {
+        this.codesandbox = codesandbox;
     }
 
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
         log.info("代码沙箱请求信息" + executeCodeRequest.toString());
-        ExecuteCodeResponse executeCodeResponse = codeSandBox.executeCode(executeCodeRequest);
+        ExecuteCodeResponse executeCodeResponse = codesandbox.executeCode(executeCodeRequest);
         log.info("代码沙箱返回信息" + executeCodeResponse.toString());
         return executeCodeResponse;
     }

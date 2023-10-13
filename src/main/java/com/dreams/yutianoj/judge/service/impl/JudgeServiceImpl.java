@@ -3,9 +3,9 @@ package com.dreams.yutianoj.judge.service.impl;
 import cn.hutool.json.JSONUtil;
 import com.dreams.yutianoj.common.ErrorCode;
 import com.dreams.yutianoj.exception.BusinessException;
-import com.dreams.yutianoj.judge.codesandbox.CodeSandBox;
-import com.dreams.yutianoj.judge.codesandbox.CodeSandBoxFactory;
-import com.dreams.yutianoj.judge.codesandbox.CodeSandBoxProxy;
+import com.dreams.yutianoj.judge.codesandbox.Codesandbox;
+import com.dreams.yutianoj.judge.codesandbox.CodesandboxFactory;
+import com.dreams.yutianoj.judge.codesandbox.CodesandboxProxy;
 import com.dreams.yutianoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.dreams.yutianoj.judge.codesandbox.model.ExecuteCodeResponse;
 import com.dreams.yutianoj.judge.service.JudgeService;
@@ -75,8 +75,8 @@ public class JudgeServiceImpl implements JudgeService {
 
 
         //调用沙箱
-        CodeSandBox codeSandBox = CodeSandBoxFactory.newInstance(type);
-        codeSandBox = new CodeSandBoxProxy(codeSandBox);
+        Codesandbox codesandbox = CodesandboxFactory.newInstance(type);
+        codesandbox = new CodesandboxProxy(codesandbox);
         //code,language,和输入用例
         String language = questionSubmit.getLanguage();
         String code = questionSubmit.getCode();
@@ -88,7 +88,7 @@ public class JudgeServiceImpl implements JudgeService {
                 .language(language)
                 .inputList(inputList)
                 .build();
-        ExecuteCodeResponse executeCodeResponse = codeSandBox.executeCode(executeCodeRequest);
+        ExecuteCodeResponse executeCodeResponse = codesandbox.executeCode(executeCodeRequest);
 
         List<String> outputList = executeCodeResponse.getOutputList();
 
